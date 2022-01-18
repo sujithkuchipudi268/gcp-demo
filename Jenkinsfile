@@ -36,7 +36,7 @@ pipeline {
                     sh '''
                     echo 'connect to remote host and pull down the latest version'
                     ssh -o StrictHostKeyChecking=no saivenkatasujith@34.125.43.56 sudo chown -R saivenkatasujith.saivenkatasujith /var/www/html/
-                    scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sample/gcp-demo/html saivenkatasujith@34.125.43.56:/var/www/html/
+                    scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/gcp-demo/html saivenkatasujith@34.125.43.56:/var/www/html/
                     '''
                 }           
             }
