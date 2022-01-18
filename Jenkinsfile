@@ -9,7 +9,7 @@ pipeline {
                 sh 'pwd'
             }
         }
-        stage('install app dependencies') {
+        stage('check SSH connection') {
             steps {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
@@ -18,7 +18,7 @@ pipeline {
                 }
             }
         }
-        stage('install app2 dependencies') {
+        stage('install app dependencies') {
             steps {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
@@ -30,7 +30,7 @@ pipeline {
                   }
             }
         }
-        stage('push repo to remote host') {
+        stage('push code to remote host') {
             steps {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
