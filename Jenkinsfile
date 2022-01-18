@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
-                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 hostname 
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith@34.125.43.56 hostname 
                     '''
                 }
             }
@@ -23,9 +23,9 @@ pipeline {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
                     echo 'connect to remote host and install the app dependencies'
-                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo apt-get update -y
-                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo apt-get install apache2 -y
-                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo service apache2 start
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith@34.125.43.56 sudo apt-get update -y
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith@34.125.43.56 sudo apt-get install apache2 -y
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith@34.125.43.56 sudo service apache2 start
                     '''
                   }
             }
@@ -35,8 +35,8 @@ pipeline {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
                     echo 'connect to remote host and pull down the latest version'
-                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo chown -R "saivenkatasujith.k"."saivenkatasujith.k" /var/www/html/
-                    scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sample/gcp-demo/html saivenkatasujith.k@34.125.43.56:/var/www/html/
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith@34.125.43.56 sudo chown -R saivenkatasujith.saivenkatasujith /var/www/html/
+                    scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sample/gcp-demo/html saivenkatasujith@34.125.43.56:/var/www/html/
                     '''
                 }           
             }
