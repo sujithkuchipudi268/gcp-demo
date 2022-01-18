@@ -7,9 +7,6 @@ pipeline {
 
     // --- RELEASE ---
     stage('Release') {
-      agent {
-        label "node"
-      }
       when {
         expression {
           GIT_TAG = sh(returnStdout: true, script: 'git describe --exact-match --tags HEAD || true')
@@ -22,5 +19,14 @@ pipeline {
         addBadge icon: 'completed.gif', text: GIT_TAG
       }
     }
+        stage("foo") {
+            steps {
+                echo "booleanExample: ${params.booleanExample}"
+                echo "stringExample: ${params.stringExample}"
+                echo "textExample: ${params.textExample}"
+                echo "choiceExample: ${params.choiceExample}"
+                echo "passwordExample: ${params.passwordExample}"
+            }
+        }
   }
 }
