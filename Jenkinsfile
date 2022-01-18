@@ -4,8 +4,8 @@ pipeline {
         stage('Clone the repo') {
             steps {
                 echo 'clone the repo'
-                sh 'rm -fr demo-ggcp'
-                sh 'git clone https://github.com/ravvereddy/demo-ggcp.git'
+                sh 'rm -fr gcp-demo'
+                sh 'git clone https://github.com/sujithkuchipudi268/gcp-demo.git'
                 sh 'pwd'
             }
         }
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
-                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 hostname 
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 hostname 
                     '''
                 }
             }
@@ -23,9 +23,9 @@ pipeline {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
                     echo 'connect to remote host and install the app dependencies'
-                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo apt-get update -y
-                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo apt-get install apache2 -y
-                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo service apache2 start
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo apt-get update -y
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo apt-get install apache2 -y
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo service apache2 start
                     '''
                   }
             }
@@ -35,8 +35,8 @@ pipeline {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
                     echo 'connect to remote host and pull down the latest version'
-                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo chown -R ubuntu.ubuntu /var/www/html/
-                    scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sample/demo-ggcp/html ubuntu@13.232.207.109:/var/www/html/
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo chown -R saivenkatasujith.k.saivenkatasujith.k /var/www/html/
+                    scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sample/gcp-demo/html saivenkatasujith.k@34.125.43.56:/var/www/html/
                     '''
                 }           
             }
@@ -44,7 +44,7 @@ pipeline {
         stage('Check website is up') {
             steps {
                 echo 'Check website is up'
-                sh 'curl -Is 13.232.207.109 | head -n 1'
+                sh 'curl -Is 34.125.43.56 | head -n 1'
             }
         }
     }
