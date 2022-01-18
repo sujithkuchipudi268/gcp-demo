@@ -35,7 +35,7 @@ pipeline {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
                     echo 'connect to remote host and pull down the latest version'
-                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo chown -R saivenkatasujith.k.saivenkatasujith.k /var/www/html/
+                    ssh -o StrictHostKeyChecking=no saivenkatasujith.k@34.125.43.56 sudo chown -R "saivenkatasujith.k"."saivenkatasujith.k" /var/www/html/
                     scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sample/gcp-demo/html saivenkatasujith.k@34.125.43.56:/var/www/html/
                     '''
                 }           
